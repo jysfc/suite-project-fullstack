@@ -1,0 +1,75 @@
+{
+   "id": "9bfbc757-fcc9-40c8-9f83-652fdefee41e",
+   "email": "jay@mirage.com",
+   "password": "5B6BAE31B3A9C341FC7AC920A037514F14F3C8C0",
+   "createdAt": 1605664419064,
+   "isActive": true,
+   "properties": [
+      {
+         "name": "The Mirage Hotel & Casino",
+         "id": "76e032b2-8ba6-4487-818c-5290cdbb5a1c",
+         "website": "https://mirage.com",
+         "address1": "3400 S Las Vegas Blvd",
+         "address2": "",
+         "city": "Las Vegas",
+         "state": "NV",
+         "zip": "89109",
+         "country": "US",
+         "phoneCountryCode": "+1",
+         "phoneAreaCode": "702",
+         "phoneNumber": "7917111",
+         "selfParking": "Free",
+         "valetParking": "N/A",
+         "hasOutdoorPool": true,
+         "hasSpa": true,
+         "isSmokeFree": true,
+         "suites": [
+            {
+               "id": "76e032b2-8ba6-4487-818c-5290cdbb5a1b",
+               "title": "Two Bedroom Hospitality Suite",
+               "image": "https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-hospitality-suite-living-area-architectural.tif.image.892.668.high.jpg",
+               "squareFt": 1714,
+               "maxGuest": 6,
+               "totalKingBed": 1,
+               "totalQueenBed": 2,
+               "totalFullBed": 0,
+               "hasWiFi": true,
+               "hasTv": true,
+               "hasSafe": true,
+               "isAccessible": true,
+               "isActive": true
+            },
+            {
+               "id": "5feab824-a7a0-40c3-8313-e77982e9566d",
+               "title": "Two Bedroom Penthouse",
+               "image": "https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-penthouse-suite-living-area-table-architectural.tif.image.1488.836.high.jpg",
+               "squareFt": 1628,
+               "maxGuest": 4,
+               "totalKingBed": 2,
+               "totalQueenBed": 0,
+               "totalFullBed": 0,
+               "hasWiFi": true,
+               "hasTv": true,
+               "hasSafe": true,
+               "isAccessible": true,
+               "isActive": true
+            },
+            {
+               "id": "bc87a93d-5f13-47d6-af99-41ec08a36c73",
+               "title": "Two Bedroom Tower Suite",
+               "image": "https://static.mgmresorts.com/content/dam/MGM/the-mirage/hotel/Suites/mirage-hotel-tower-suite-living-area-limeade-architectural.tif.image.892.668.high.jpg",
+               "squareFt": 1628,
+               "maxGuest": 6,
+               "totalKingBed": 1,
+               "totalQueenBed": 2,
+               "totalFullBed": 0,
+               "hasWiFi": true,
+               "hasTv": true,
+               "hasSafe": true,
+               "isAccessible": true,
+               "isActive": true
+            }
+         ]
+      }
+   ]
+}

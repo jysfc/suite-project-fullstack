@@ -1,0 +1,45 @@
+{
+   "id": "49add96e-1c04-40d6-9256-231f314c0a2f",
+   "email": "john@westinstfrancis.com",
+   "password": "E9C1240161604E16A32DED612BA0C91B9B751FE0",
+   "createdAt": 1606890505551,
+   "isActive": true,
+   "properties": [
+      {
+         "name": "The Westin St. Francis",
+         "id": "21f77c6b-d814-4763-9d1c-d582f73ab457",
+         "website": "https://www.marriott.com/hotels/travel/sfouw-the-westin-st-francis-san-francisco-on-union-square/",
+         "address1": "335 Powell Street",
+         "address2": "",
+         "city": "San Francisco",
+         "state": "CA",
+         "zip": "94102",
+         "country": "US",
+         "phoneCountryCode": "001",
+         "phoneAreaCode": "415",
+         "phoneNumber": "3977000",
+         "selfParking": "N/A",
+         "valetParking": "68",
+         "hasOutdoorPool": false,
+         "hasSpa": false,
+         "isSmokeFree": true,
+         "suites": [
+            {
+               "id": "c14ed755-0e77-46ac-976a-779d3ef18ad9",
+               "title": "State Suite",
+               "image": "https://cache.marriott.com/marriottassets/marriott/SFOUW/sfouw-suite-6253-hor-feat.jpg",
+               "squareFt": 2500,
+               "maxGuest": 4,
+               "totalKingBed": 1,
+               "totalQueenBed": 0,
+               "totalFullBed": 0,
+               "hasWiFi": true,
+               "hasTv": true,
+               "hasSafe": true,
+               "isAccessible": false,
+               "isActive": true
+            }
+         ]
+      }
+   ]
+}
