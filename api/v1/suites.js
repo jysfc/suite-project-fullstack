@@ -19,9 +19,22 @@ router.get("/", (req, res) => {
    }
    /* https://www.npmjs.com/package/mysql#escaping-query-values */
    db.query(selectAllSuites, [constructedSearchTerm, order])
-      .then((dbRes) => {
-         //  console.log(dbRes);
-         res.json(dbRes);
+      .then((suites) => {
+         //  console.log(suites);
+         const camelCaseSuites = suites.map((suite) => {
+            return {
+               id: suite.id,
+               imagery: suite.imagery,
+               answer: suite.answer,
+               userId: suite.user_id,
+               createdAt: suite.created_at,
+               nextAttemptAt: suite.next_attempt_at,
+               lastAttemptAt: suite.last_attempt_at,
+               totalSuccessfulAttempts: suite.total_successful_attempts,
+               level: suite.level,
+            };
+         });
+         res.json(camelCaseSuites);
       })
       .catch((err) => {
          console.log(err);
