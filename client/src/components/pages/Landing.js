@@ -11,14 +11,14 @@ class Landing extends React.Component {
       super(props);
       this.state = {
          order: '[["propertyCity"], ["desc"]]',
-         displayedSuites: [],
-         allSuites: [],
+         suites: [],
+         searchTerm: "",
       };
    }
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/suites.json"
+            `api/v1/suites?searchTerm=${this.state.searchTerm}&order=${this.state.order}`
          )
          .then((res) => {
             // handle success

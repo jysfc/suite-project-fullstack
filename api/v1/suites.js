@@ -18,20 +18,29 @@ router.get("/", (req, res) => {
       constructedSearchTerm = `%${searchTerm}%`;
    }
    /* https://www.npmjs.com/package/mysql#escaping-query-values */
-   db.query(selectAllSuites, [constructedSearchTerm, order])
+   db.query(selectAllSuites, [
+      constructedSearchTerm,
+      { toSqlString: () => order },
+   ])
       .then((suites) => {
          //  console.log(suites);
          const camelCaseSuites = suites.map((suite) => {
             return {
+               propertyId: suite.property_id,
+               city: suite.city,
+               title: suite.title,
                id: suite.id,
-               imagery: suite.imagery,
-               answer: suite.answer,
-               userId: suite.user_id,
-               createdAt: suite.created_at,
-               nextAttemptAt: suite.next_attempt_at,
-               lastAttemptAt: suite.last_attempt_at,
-               totalSuccessfulAttempts: suite.total_successful_attempts,
-               level: suite.level,
+               image: suite.image,
+               squareFt: suite.square_ft,
+               maxGuest: suite.max_guest,
+               totalKingBed: suite.total_king_bed,
+               totalQueenBed: suite.total_queen_bed,
+               totalFullBed: suite.total_full_bed,
+               hasWifi: suite.has_wifi,
+               hasTv: suite.has_tv,
+               hasSafe: suite.has_safe,
+               isAccessible: suite.is_accessible,
+               isActive: suite.is_active,
             };
          });
          res.json(camelCaseSuites);
