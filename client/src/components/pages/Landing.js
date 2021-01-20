@@ -9,7 +9,7 @@ export default class Landing extends React.Component {
       super(props);
       this.state = {
          suites: [],
-         searchTerm: "",
+         filteredSuites: "",
       };
    }
    componentDidMount() {
@@ -40,7 +40,7 @@ export default class Landing extends React.Component {
 
    setSuites() {
       axios
-         .get(`api/v1/suites?searchTerm=${this.state.searchTerm}`)
+         .get(`api/v1/suites?filteredSuites=${this.state.filteredSuites}`)
          .then((res) => {
             // handle success
             console.log(res.data);

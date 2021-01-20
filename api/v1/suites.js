@@ -10,15 +10,15 @@ const selectAllSuites = require("../../queries/selectAllSuites");
 
 router.get("/", (req, res) => {
    console.log(req.query);
-   const { searchTerm, order } = req.query;
-   let constructedSearchTerm;
-   if (searchTerm === "" || searchTerm === undefined) {
-      constructedSearchTerm = "%%";
+   const { filteredSuite } = req.query;
+   let constructedFilteredSuite;
+   if (filteredSuite === "" || filteredSuite === undefined) {
+      constructedFilteredSuite = "%%";
    } else {
-      constructedSearchTerm = `%${searchTerm}%`;
+      constructedFilteredSuite = `%${filteredSuite}%`;
    }
    /* https://www.npmjs.com/package/mysql#escaping-query-values */
-   db.query(selectAllSuites, [constructedSearchTerm])
+   db.query(selectAllSuites, [constructedFilteredSuite])
       .then((suites) => {
          //  console.log(suites);
          const camelCaseSuites = suites.map((suite) => {
