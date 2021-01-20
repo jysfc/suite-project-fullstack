@@ -34,10 +34,6 @@ router.get("/", (req, res) => {
                totalKingBed: suite.total_king_bed,
                totalQueenBed: suite.total_queen_bed,
                totalFullBed: suite.total_full_bed,
-               hasWifi: suite.has_wifi,
-               hasTv: suite.has_tv,
-               hasSafe: suite.has_safe,
-               isAccessible: suite.is_accessible,
                isActive: suite.is_active,
             };
          });
