@@ -1,4 +1,4 @@
-const selectAllCards = `
+const selectAllSuites = `
 SELECT
     users.id AS user_id,
     users.email,
@@ -44,6 +44,10 @@ FROM
         INNER JOIN
     properties ON user_id = users.id
         INNER JOIN
-    suites ON property_id = properties.id;
+    suites ON property_id = properties.id
+WHERE
+    suites.city = ?
+        AND
+        suites.total_beds = ?;
 `;
 module.exports = selectAllCards;

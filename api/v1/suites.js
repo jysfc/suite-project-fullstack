@@ -18,16 +18,14 @@ router.get("/", (req, res) => {
       constructedSearchTerm = `%${searchTerm}%`;
    }
    /* https://www.npmjs.com/package/mysql#escaping-query-values */
-   db.query(selectAllSuites, [
-      constructedSearchTerm,
-      { toSqlString: () => order },
-   ])
+   db.query(selectAllSuites, [constructedSearchTerm])
       .then((suites) => {
          //  console.log(suites);
          const camelCaseSuites = suites.map((suite) => {
             return {
                propertyId: suite.property_id,
                city: suite.city,
+               zip: suite.zip,
                title: suite.title,
                id: suite.id,
                image: suite.image,

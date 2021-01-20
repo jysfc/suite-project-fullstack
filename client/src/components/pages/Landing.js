@@ -1,31 +1,51 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
-import orderBy from "lodash/orderBy";
 import SuitePrev from "../ui/SuitePrev";
 import axios from "axios";
-import { connect } from "react-redux";
 import actions from "../../store/actions";
 
-class Landing extends React.Component {
+export default class Landing extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         order: '[["propertyCity"], ["desc"]]',
          suites: [],
          searchTerm: "",
       };
    }
    componentDidMount() {
+      this.setSuites();
+   }
+
+   filterSuites() {
+      const input = document.getElementById("search-input").value;
+      const lowerCasedInput = input.toLowerCase();
+      const selectInput = document.getElementById("inputBeds").value;
+      console.log(selectInput);
+      console.log(lowerCasedInput);
+      const filteredSuites = this.state.suites.filter((suite) => {
+         const lowerCasedCity = suite.city.toLowerCase();
+         const totalBeds =
+            suite.totalFullBed + suite.totalKingBed + suite.totalQueenBed;
+         console.log(totalBeds);
+         if (
+            (lowerCasedCity.includes(lowerCasedInput) ||
+               suite.propertyZip.includes(lowerCasedInput)) &&
+            totalBeds === Number(selectInput)
+         ) {
+            return true;
+         } else return false;
+      });
+      this.setState({ suites: filteredSuites });
+   }
+
+   setSuites() {
       axios
-         .get(
-            `api/v1/suites?searchTerm=${this.state.searchTerm}&order=${this.state.order}`
-         )
+         .get(`api/v1/suites?searchTerm=${this.state.searchTerm}`)
          .then((res) => {
             // handle success
-            const suites = res.data;
+            console.log(res.data);
             this.setState({
-               displayedSuites: orderBy(suites, ["createdAt"], ["desc"]),
-               allSuites: orderBy(suites, ["createdAt"], ["desc"]),
+               suites: res.data,
             });
             this.props.dispatch({
                type: actions.PRESENT_ALL_SUITES,
@@ -36,28 +56,6 @@ class Landing extends React.Component {
             // handle error
             console.log(error);
          });
-   }
-
-   filterSuites() {
-      const input = document.getElementById("search-input").value;
-      const lowerCasedInput = input.toLowerCase();
-      const selectInput = document.getElementById("inputBeds").value;
-      console.log(selectInput);
-      console.log(lowerCasedInput);
-      const filteredSuites = this.state.allSuites.filter((suite) => {
-         const lowerCasedPropertyCity = suite.propertyCity.toLowerCase();
-         const totalBeds =
-            suite.totalFullBed + suite.totalKingBed + suite.totalQueenBed;
-         console.log(totalBeds);
-         if (
-            (lowerCasedPropertyCity.includes(lowerCasedInput) ||
-               suite.propertyZip.includes(lowerCasedInput)) &&
-            totalBeds === Number(selectInput)
-         ) {
-            return true;
-         } else return false;
-      });
-      this.setState({ displayedSuites: filteredSuites });
    }
 
    render() {
@@ -95,17 +93,17 @@ class Landing extends React.Component {
                </div>
             </div>
             {/* <!--results--> */}
-            {this.state.displayedSuites.map((suite) => {
+            {this.state.suites.map((suite) => {
                return <SuitePrev PropInfo suite={suite} key={suite.id} />;
             })}
          </AppTemplate>
       );
    }
 }
-function mapStateToProps(state) {
-   return {
-      allSuites: state.allSuites,
-   };
-}
+// function mapStateToProps(state) {
+//    return {
+//       allSuites: state.allSuites,
+//    };
+// }
 
-export default connect(mapStateToProps)(Landing);
+// export default connect(mapStateToProps)(Landing);
