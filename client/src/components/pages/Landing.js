@@ -9,7 +9,7 @@ export default class Landing extends React.Component {
       super(props);
       this.state = {
          suites: [],
-         filteredSuites: "",
+         filteredSuites: [],
       };
    }
    componentDidMount() {
@@ -35,7 +35,7 @@ export default class Landing extends React.Component {
             return true;
          } else return false;
       });
-      this.setState({ suites: filteredSuites });
+      this.setState({ filteredSuites: filteredSuites });
    }
 
    setSuites() {
@@ -46,6 +46,7 @@ export default class Landing extends React.Component {
             console.log(res.data);
             this.setState({
                suites: res.data,
+               filteredSuites: res.data,
             });
             this.props.dispatch({
                type: actions.PRESENT_ALL_SUITES,
@@ -93,7 +94,7 @@ export default class Landing extends React.Component {
                </div>
             </div>
             {/* <!--results--> */}
-            {this.state.suites.map((suite) => {
+            {this.state.filteredSuites.map((suite) => {
                return <SuitePrev PropInfo suite={suite} key={suite.id} />;
             })}
          </AppTemplate>
