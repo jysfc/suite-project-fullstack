@@ -17,6 +17,6 @@ module.exports = {
 
    toHash(password) {
       const saltRounds = 12;
-      bcrypt.hash(password, saltRounds);
+      return bcrypt.hash(password, saltRounds);
    },
 };
