@@ -29,7 +29,7 @@ export default class Landing extends React.Component {
          console.log(totalBeds);
          if (
             (lowerCasedCity.includes(lowerCasedInput) ||
-               suite.propertyZip.includes(lowerCasedInput)) &&
+               suite.zip.includes(lowerCasedInput)) &&
             totalBeds === Number(selectInput)
          ) {
             return true;
