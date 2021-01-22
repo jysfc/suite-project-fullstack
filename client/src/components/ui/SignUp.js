@@ -102,7 +102,7 @@ class SignUp extends React.Component {
             email: signupEmailInput,
             password: signupPasswordInput,
             createdAt: Date.now(),
-            isActive: Boolean(1),
+            isActive: Boolean(true),
          };
          console.log("created user object for POST: ", user);
          // post to API
