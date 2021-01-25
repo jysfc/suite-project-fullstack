@@ -38,7 +38,7 @@ class SignUp extends React.Component {
          createdAt: Date.now(),
          isActive: Boolean(true),
       };
-      console.log("created user object for POST: ", user);
+      // console.log("created user object for POST: ", user); // will show user/pw on console
       // post to API
       axios
          .post("/api/v1/users", user)
