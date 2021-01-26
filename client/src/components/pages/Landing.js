@@ -2,7 +2,7 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuitePrev from "../ui/SuitePrev";
 import axios from "axios";
-import actions from "../../store/actions";
+// import actions from "../../store/actions";
 
 export default class Landing extends React.Component {
    constructor(props) {
@@ -48,10 +48,10 @@ export default class Landing extends React.Component {
                suites: res.data,
                filteredSuites: res.data,
             });
-            this.props.dispatch({
-               type: actions.PRESENT_ALL_SUITES,
-               payload: res.data,
-            });
+            // this.props.dispatch({
+            //    type: actions.PRESENT_ALL_SUITES,
+            //    payload: res.data,
+            // });
          })
          .catch((error) => {
             // handle error

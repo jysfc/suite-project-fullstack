@@ -32,10 +32,10 @@ if (authToken) {
          payload: user,
       });
       // set authorization headers
-      // redirect to create-answer
+      // redirect to select-property
       const currentUrl = window.location.pathname;
       if (currentUrl === "/") {
-         window.location.href = "/create-answer";
+         window.location.href = "/select-property";
       }
    }
 } else {

@@ -39,7 +39,7 @@ class LogIn extends React.Component {
                type: actions.UPDATE_CURRENT_USER,
                payload: user,
             });
-            this.props.history.push("/create-answer");
+            this.props.history.push("/select-property");
          })
          .catch((err) => {
             const { data } = err.response;
