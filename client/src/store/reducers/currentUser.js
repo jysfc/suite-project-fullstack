@@ -6,6 +6,7 @@ export default function currentUser(currentUser = {}, action) {
       case actions.UPDATE_CURRENT_USER:
          if (isEmpty(action.payload)) {
             localStorage.removeItem("authToken");
+            delete axios.defaults.headers.common["x-auth-token"];
          }
          return action.payload;
       default:
