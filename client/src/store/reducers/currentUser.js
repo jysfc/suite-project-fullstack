@@ -1,5 +1,6 @@
 import actions from "../actions";
 import isEmpty from "lodash/isEmpty";
+import axios from "axios";
 
 export default function currentUser(currentUser = {}, action) {
    switch (action.type) {
