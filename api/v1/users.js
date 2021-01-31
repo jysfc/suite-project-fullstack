@@ -32,20 +32,19 @@ router.post("/", async (req, res) => {
 
       db.query(insertUser, user)
          .then(() => {
-            db.query(selectUserById, id)
-               .then((users) => {
-                  const user = users[0];
-                  res.status(200).json({
-                     id: user.id,
-                     email: user.email,
-                     createdAt: user.created_at,
-                  });
-               })
-               .catch((err) => {
-                  console.log(err);
-                  dbError = `${err.code} ${err.sqlMessage}`;
-                  res.status(400).json({ dbError });
-               });
+            db.query(selectUserById, id).then((users) => {
+               const user = {
+                  id: users[0].id,
+                  email: users[0].email,
+                  createdAt: users[0].created_at,
+               };
+               const accessToken = jwt.sign(
+                  user,
+                  process.env.JWT_ACCESS_SECRET,
+                  {}
+               );
+               res.status(200).json(accessToken);
+            });
          })
          .catch((err) => {
             console.log(err);
