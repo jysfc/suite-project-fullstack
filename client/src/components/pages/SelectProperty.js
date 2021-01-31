@@ -20,7 +20,8 @@ class SelectProperty extends React.Component {
    componentDidMount() {
       axios
          .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
+            // "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
+            "https://run.mocky.io/v3/2f09d7af-c884-4142-b40a-3b52b84c18d9"
          )
          .then((res) => {
             // handle success
