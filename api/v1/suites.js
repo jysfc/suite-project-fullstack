@@ -3,13 +3,12 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../db");
 const selectAllSuites = require("../../queries/selectAllSuites");
-const validateJwt = require("../../utils/validateJwt");
 
 //@route        GET api/v1/suites
 //@desc         Get all suites by search term and order
 //@access       Private
 
-router.get("/", validateJwt, (req, res) => {
+router.get("/", (req, res) => {
    console.log(req.query);
    const { filteredSuite } = req.query;
    let constructedFilteredSuite;
