@@ -13,16 +13,15 @@ class PropInfo extends React.Component {
       return (
          //<!--COLUMN LEFT PROP INFO-->
          <div className="col-12 col-md-6">
-            <h2>{props.property}</h2>
+            <h2>{props.propertyName}</h2>
             <ul className="list-unstyled">
                <li className="mt-4">{props.propertyAddress1}</li>
                <li>
-                  {props.propertyCity}, {props.propertyState}{" "}
-                  {props.propertyZip} {props.propertyCountry}
+                  {props.city}, {props.state} {props.zip} {props.country}
                </li>
                <li>
-                  {props.propertyPhoneCountryCode}({props.propertyPhoneAreaCode}
-                  ) {props.propertyPhoneNumber}
+                  {props.phoneCountryCode}({props.phoneAreaCode}){" "}
+                  {props.phoneNumber}
                </li>
 
                <li className="mt-4">
@@ -32,7 +31,7 @@ class PropInfo extends React.Component {
                      className="mr-1"
                      alt=""
                   />
-                  <strong>Self parking:</strong> {props.propertySelfParking}
+                  <strong>Self parking:</strong> {props.selfParking}
                </li>
                <li>
                   <img
@@ -41,12 +40,12 @@ class PropInfo extends React.Component {
                      className="mr-1"
                      alt=""
                   />
-                  <strong>Valet parking:</strong> {props.propertyValetParking}
+                  <strong>Valet parking:</strong> {props.valetParking}
                </li>
                <li className="lead mt-4">Hotel Amenities:</li>
                <li>
                   <ul className="list-unstyled">
-                     {props.propertyHasOutdoorPool && (
+                     {props.hasOutdoorPool && (
                         <li>
                            <img
                               src={PoolOutdoorIcon}
@@ -58,7 +57,7 @@ class PropInfo extends React.Component {
                         </li>
                      )}
 
-                     {props.propertyHasSpa && (
+                     {props.hasSpa && (
                         <li>
                            <img
                               src={SpaIcon}
@@ -70,7 +69,7 @@ class PropInfo extends React.Component {
                         </li>
                      )}
 
-                     {props.propertyIsSmokeFree && (
+                     {props.isSmokeFree && (
                         <li>
                            <img
                               src={SmokingNoIcon}

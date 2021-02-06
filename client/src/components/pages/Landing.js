@@ -2,6 +2,7 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuitePrev from "../ui/SuitePrev";
 import axios from "axios";
+// import { connect } from "react-redux";
 // import actions from "../../store/actions";
 
 export default class Landing extends React.Component {

@@ -24,8 +24,22 @@ router.get("/", (req, res) => {
          const camelCaseSuites = suites.map((suite) => {
             return {
                propertyId: suite.property_id,
+               propertyName: suite.property_name, //??????
+               propertyWebsite: suite.website,
+               propertyAddress1: suite.address1,
+               propertyAddress2: suite.address2,
                city: suite.city,
+               state: suite.state,
                zip: suite.zip,
+               country: suite.country,
+               phoneCountryCode: suite.phone_country_code,
+               phoneAreaCode: suite.phone_area_code,
+               phoneNumber: suite.phone_number,
+               selfParking: suite.self_parking,
+               valetParking: suite.valet_parking,
+               hasOutdoorPool: suite.has_outdoor_pool,
+               hasSpa: suite.has_spa,
+               isSmokeFree: suite.is_smoke_free,
                title: suite.title,
                id: suite.id,
                image: suite.image,
@@ -34,6 +48,10 @@ router.get("/", (req, res) => {
                totalKingBed: suite.total_king_bed,
                totalQueenBed: suite.total_queen_bed,
                totalFullBed: suite.total_full_bed,
+               hasWiFi: suite.has_wifi,
+               hasTv: suite.has_tv,
+               hasSafe: suite.has_safe,
+               isAccessible: suite.is_accessible,
                isActive: suite.is_active,
             };
          });
