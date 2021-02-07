@@ -2,8 +2,6 @@ import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuitePrev from "../ui/SuitePrev";
 import axios from "axios";
-// import { connect } from "react-redux";
-// import actions from "../../store/actions";
 
 export default class Landing extends React.Component {
    constructor(props) {
@@ -50,10 +48,6 @@ export default class Landing extends React.Component {
                suites: res.data,
                filteredSuites: res.data,
             });
-            // this.props.dispatch({
-            //    type: actions.PRESENT_ALL_SUITES,
-            //    payload: res.data,
-            // });
          })
          .catch((error) => {
             // handle error
@@ -103,10 +97,3 @@ export default class Landing extends React.Component {
       );
    }
 }
-// function mapStateToProps(state) {
-//    return {
-//       allSuites: state.allSuites,
-//    };
-// }
-
-// export default connect(mapStateToProps)(Landing);
