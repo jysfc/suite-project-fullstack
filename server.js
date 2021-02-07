@@ -5,7 +5,7 @@ const path = require("path");
 app.use(express.json());
 
 app.use("/api/v1/users", require("./api/v1/users"));
-// app.use("/api/v1/properties", require("./api/v1/properties"));
+app.use("/api/v1/properties", require("./api/v1/properties"));
 app.use("/api/v1/suites", require("./api/v1/suites"));
 
 app.use(express.static("client/build"));
