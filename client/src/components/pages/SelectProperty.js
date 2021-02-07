@@ -10,25 +10,26 @@ import actions from "../../store/actions";
 class SelectProperty extends React.Component {
    constructor(props) {
       super(props);
-      // const currentUser = this.props.currentUser[0];
-      // console.log("user", this.props.currentUser[0].propertyName);
       this.state = {
+         properties: [],
          displayedProperties: [],
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
+
    componentDidMount() {
+      this.setProperties();
+   }
+
+   setProperties() {
       axios
-         .get(
-            // "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
-            "https://run.mocky.io/v3/2f09d7af-c884-4142-b40a-3b52b84c18d9"
-         )
+         .get(`/api/v1/properties`)
          .then((res) => {
             // handle success
-            const currentUser = res.data;
-            console.log(currentUser);
+            console.log(res.data);
             this.setState({
-               displayedProperties: currentUser.properties,
+               properties: res.data,
+               displayedProperties: res.data,
             });
          })
          .catch((error) => {
@@ -36,6 +37,9 @@ class SelectProperty extends React.Component {
             console.log(error);
          });
    }
+
+   addProperty() {}
+
    deleteProperty(property) {
       const deletedProperty = property;
       const properties = this.state.displayedProperties;

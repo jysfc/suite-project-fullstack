@@ -8,18 +8,11 @@ const validateJwt = require("../../utils/validateJwt");
 //@route        GET api/v1/properties
 //@desc         Get all properties by user id
 //@access       Private
-
 router.get("/", validateJwt, (req, res) => {
    console.log(req.query);
-   //    const { filteredSuite } = req.query;
-   //    let constructedFilteredSuite;
-   //    if (filteredSuite === "" || filteredSuite === undefined) {
-   //       constructedFilteredSuite = "%%";
-   //    } else {
-   //       constructedFilteredSuite = `%${filteredSuite}%`;
-   //    }
-   /* https://www.npmjs.com/package/mysql#escaping-query-values */
-   db.query(selectAllProperties)
+   const userId = req.user.id;
+
+   db.query(selectAllProperties, userId)
       .then((properties) => {
          //  console.log(properties);
          const camelCaseProperties = properties.map((property) => {
@@ -45,11 +38,11 @@ router.get("/", validateJwt, (req, res) => {
                isActive: property.is_active,
             };
          });
-         res.json(camelCaseProperties);
+         return res.status(200).json(camelCaseProperties);
       })
       .catch((err) => {
          console.log(err);
-         res.status(400).json(err);
+         return res.status(400).json(err);
       });
 });
 
