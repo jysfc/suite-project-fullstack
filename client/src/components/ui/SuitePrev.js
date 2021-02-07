@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import actions from "../../store/actions";
 
 class SuitePrev extends React.Component {
-   goToNextCard() {
+   selectedSuite() {
       this.props.dispatch({
          type: actions.PRESENT_SELECTED_SUITE,
          payload: this.props.suite,
@@ -34,7 +34,7 @@ class SuitePrev extends React.Component {
                         type="button"
                         className="text-dark text-decoration-none"
                         onClick={() => {
-                           this.goToNextCard();
+                           this.selectedSuite();
                         }}
                      >
                         <h2>{this.props.suite.title}</h2>
