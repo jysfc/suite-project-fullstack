@@ -83,7 +83,7 @@ class Suite extends React.Component {
                         <li className="lead mt-4">Suite Amenities:</li>
                         <li>
                            <ul className="list-unstyled">
-                              {this.props.selectedSuite.hasWiFi && (
+                              {this.props.selectedSuite.hasWiFi > 0 && (
                                  <li>
                                     <img
                                        src={WifiIcon}
@@ -95,7 +95,7 @@ class Suite extends React.Component {
                                  </li>
                               )}
 
-                              {this.props.selectedSuite.hasTv && (
+                              {this.props.selectedSuite.hasTv > 0 && (
                                  <li>
                                     <img
                                        src={TvIcon}
@@ -106,7 +106,7 @@ class Suite extends React.Component {
                                     TV
                                  </li>
                               )}
-                              {this.props.selectedSuite.hasSafe && (
+                              {this.props.selectedSuite.hasSafe > 0 && (
                                  <li>
                                     <img
                                        src={SafeIcon}
@@ -118,7 +118,7 @@ class Suite extends React.Component {
                                  </li>
                               )}
 
-                              {this.props.selectedSuite.isAccessible && (
+                              {this.props.selectedSuite.isAccessible > 0 && (
                                  <li>
                                     <img
                                        src={AccessibleIcon}

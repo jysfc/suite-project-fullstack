@@ -45,7 +45,7 @@ class PropInfo extends React.Component {
                <li className="lead mt-4">Hotel Amenities:</li>
                <li>
                   <ul className="list-unstyled">
-                     {suite.hasOutdoorPool && (
+                     {suite.hasOutdoorPool > 0 && (
                         <li>
                            <img
                               src={PoolOutdoorIcon}
@@ -57,7 +57,7 @@ class PropInfo extends React.Component {
                         </li>
                      )}
 
-                     {suite.hasSpa && (
+                     {suite.hasSpa > 0 && (
                         <li>
                            <img
                               src={SpaIcon}
@@ -69,7 +69,7 @@ class PropInfo extends React.Component {
                         </li>
                      )}
 
-                     {suite.isSmokeFree && (
+                     {suite.isSmokeFree > 0 && (
                         <li>
                            <img
                               src={SmokingNoIcon}
