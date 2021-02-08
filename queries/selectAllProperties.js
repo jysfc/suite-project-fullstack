@@ -1,4 +1,4 @@
-const selectAllSuites = `
+const selectAllProperties = `
     SELECT
         *
     FROM
@@ -6,4 +6,4 @@ const selectAllSuites = `
     INNER JOIN
         properties ON user_id = users.id;
     `;
-module.exports = selectAllSuites;
+module.exports = selectAllProperties;
