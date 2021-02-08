@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
          const camelCaseSuites = suites.map((suite) => {
             return {
                propertyId: suite.property_id,
-               propertyName: suite.property_name, //??????
+               propertyName: suite.name,
                propertyWebsite: suite.website,
                propertyAddress1: suite.address1,
                propertyAddress2: suite.address2,
