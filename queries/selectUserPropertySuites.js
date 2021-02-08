@@ -1,4 +1,4 @@
-const selectAllProperties = `
+const selectUserPropertySuites = `
     SELECT
         *
         FROM
@@ -10,4 +10,4 @@ const selectAllProperties = `
     WHERE -- filtering data
         users.email = 'jay@mirage.com';
     `;
-module.exports = selectAllProperties;
+module.exports = selectUserPropertySuites;
