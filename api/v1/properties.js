@@ -4,6 +4,7 @@ const router = express.Router();
 const db = require("../../db");
 const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
 const validateJwt = require("../../utils/validateJwt");
+const uniqBy = require("lodash");
 
 //@route        GET api/v1/properties
 //@desc         Get all properties by user id
@@ -24,7 +25,7 @@ router.get("/", validateJwt, (req, res) => {
                   isActive: userPropertySuite.user_is_active,
                   properties: userPropertySuites.map((userPropertySuite) => {
                      return {
-                        name: userPropertySuite.property_name,
+                        name: userPropertySuite.name,
                         id: userPropertySuite.property_id,
                         website: userPropertySuite.website,
                         address1: userPropertySuite.address1,
@@ -63,8 +64,10 @@ router.get("/", validateJwt, (req, res) => {
                };
             }
          );
+         const uniqUsers = uniqBy(formattedUserPropertySuites, "id");
+         const user = uniqUsers[0];
 
-         return res.status(200).json(formattedUserPropertySuites);
+         return res.status(200).json(user);
       })
       .catch((err) => {
          console.log(err);
