@@ -1,11 +1,11 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
-import { Link } from "react-router-dom";
 import AddIcon from "../../icons/add.svg";
-import PropPrev from "../ui/PropPrev";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import actions from "../../store/actions";
+import RemoveIcon from "../../icons/remove.svg";
 
 class SelectProperty extends React.Component {
    constructor(props) {
@@ -27,9 +27,9 @@ class SelectProperty extends React.Component {
          .then((res) => {
             // handle success
             console.log(res.data);
-            this.setState({
-               properties: res.data,
-               displayedProperties: res.data,
+            this.props.dispatch({
+               type: actions.UPDATE_EDITABLE_PROPERTY,
+               payload: res.data,
             });
          })
          .catch((error) => {
@@ -38,7 +38,21 @@ class SelectProperty extends React.Component {
          });
    }
 
-   addProperty() {}
+   addProperty() {
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: this.props.property,
+      });
+      this.props.history.push("/edit-property");
+   }
+
+   editProperty() {
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: this.props.property,
+      });
+      this.props.history.push("/edit-property");
+   }
 
    deleteProperty(property) {
       const deletedProperty = property;
@@ -58,27 +72,41 @@ class SelectProperty extends React.Component {
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
-            {this.state.displayedProperties.map((property) => {
-               return (
-                  <PropPrev
-                     EditProperty
-                     property={property}
-                     key={property.id}
-                     deleteProperty={this.deleteProperty}
-                  />
-               );
-            })}
+            <div className="col my-6 mr-2 shadow p-3 bg-white rounded">
+               <Link
+                  to="edit-property"
+                  className="text-dark text-decoration-none"
+                  type="button"
+                  onClick={() => {
+                     this.editProperty();
+                  }}
+               >
+                  <h5>{this.props.editableProperty.name}</h5>
+               </Link>
+
+               <button
+                  className="text-danger text-decoration-none float-right btn btn-link"
+                  onClick={() => {
+                     this.deleteProperty();
+                  }}
+               >
+                  <img src={RemoveIcon} width="20px" id="hotel-add" alt="" />
+                  Remove
+               </button>
+            </div>
 
             {/* <!-- Property new --> */}
             <div className="col mb-4">
-               <Link
-                  to="edit-property"
-                  className="text-decoration-none"
+               <button
+                  className="text-primary text-decoration-none btn btn-link"
                   type="add-property"
+                  onClick={() => {
+                     this.addProperty();
+                  }}
                >
                   <img src={AddIcon} width="24px" id="hotel-add" alt="" />
                   <p className="d-inline ml-4">Add Property</p>
-               </Link>
+               </button>
             </div>
          </AppTemplate>
       );
