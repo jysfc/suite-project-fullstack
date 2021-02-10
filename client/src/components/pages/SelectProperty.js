@@ -13,6 +13,7 @@ class SelectProperty extends React.Component {
       this.state = {
          properties: [],
          displayedProperties: [],
+         name: "",
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
@@ -81,7 +82,7 @@ class SelectProperty extends React.Component {
                      this.editProperty();
                   }}
                >
-                  <h5>{this.props.editableProperty.name}</h5>
+                  <h5>{this.props.editableProperty.id}</h5>
                </Link>
 
                <button
