@@ -7,7 +7,7 @@ const selectUserPropertySuites = `
         properties ON user_id = users.id
             INNER JOIN
         suites ON property_id = properties.id
-    WHERE -- filtering data
-        users.email = ?;
+    WHERE
+        users.user_id = ?;
     `;
 module.exports = selectUserPropertySuites;
