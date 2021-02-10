@@ -22,14 +22,22 @@ class Header extends React.Component {
                </Link>
 
                <Link
-                  to="loginAndSignUp"
+                  to="/loginAndSignUp"
                   className="btn btn-link float-right text-decoration-none"
                   onClick={() => {
                      this.logOutCurrentUser();
                   }}
                >
+                  Log out
+               </Link>
+
+               <Link
+                  to="/loginAndSignUp"
+                  className="btn btn-link float-right mr-3 text-decoration-none"
+               >
                   Log in
                </Link>
+
                <div className="clearfix"></div>
             </div>
          </div>
