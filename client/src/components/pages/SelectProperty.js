@@ -10,10 +10,10 @@ import RemoveIcon from "../../icons/remove.svg";
 class SelectProperty extends React.Component {
    constructor(props) {
       super(props);
+      console.log(this.props.userPropertySuites);
       this.state = {
-         properties: [],
-         displayedProperties: [],
-         name: "",
+         properties: {},
+         displayedProperties: {},
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
@@ -32,6 +32,10 @@ class SelectProperty extends React.Component {
                type: actions.UPDATE_EDITABLE_PROPERTY,
                payload: res.data,
             });
+            // this.setState({
+            //    properties: res.data,
+            //    displayedProperties: res.data,
+            // });
          })
          .catch((error) => {
             // handle error
@@ -82,7 +86,7 @@ class SelectProperty extends React.Component {
                      this.editProperty();
                   }}
                >
-                  <h5>{this.props.editableProperty.id}</h5>
+                  <h5>{this.props.editableProperty.name}</h5>
                </Link>
 
                <button
