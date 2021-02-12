@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import actions from "../../store/actions";
 import RemoveIcon from "../../icons/remove.svg";
+import jwtDecode from "jwt-decode";
 
 class SelectProperty extends React.Component {
    constructor(props) {
@@ -24,14 +25,17 @@ class SelectProperty extends React.Component {
 
    setProperties() {
       axios
-         .get(`/api/v1/properties`)
+         .get(`/api/v1/users/auth`, id)
          .then((res) => {
             // handle success
-            console.log(res.data);
+            const authToken = res.data;
+            localStorage.setItem("authToken", authToken);
+            const user = jwtDecode(authToken);
             this.props.dispatch({
                type: actions.UPDATE_EDITABLE_PROPERTY,
-               payload: res.data,
+               payload: user,
             });
+            axios.defaults.headers.common["x-auth-token"] = authToken;
             // this.setState({
             //    properties: res.data,
             //    displayedProperties: res.data,
