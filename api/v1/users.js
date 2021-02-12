@@ -12,6 +12,7 @@ const getSignUpPasswordError = require("../../validation/getSignUpPasswordError"
 const getLoginEmailError = require("../../validation/getLoginEmailError");
 const getLoginPasswordError = require("../../validation/getLoginPasswordError");
 const jwt = require("jsonwebtoken");
+const uniqBy = require("lodash/uniqBy");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -69,12 +70,53 @@ router.post("/auth", async (req, res) => {
       // return the user to the client
       db.query(selectUserByEmail, email)
          .then((users) => {
-            // TODO: repeat when creating a user
             const user = {
                id: users[0].id,
                email: users[0].email,
                createdAt: users[0].created_at,
                isActive: users[0].is_active,
+               properties: uniqBy(
+                  users[0].map((user) => {
+                     return {
+                        name: user.property_name,
+                        id: user.property_id,
+                        website: user.website,
+                        address1: user.address1,
+                        address2: user.address2,
+                        city: user.city,
+                        state: user.state,
+                        zip: user.zip,
+                        country: user.country,
+                        phoneCountryCode: user.phone_country_code,
+                        phoneAreaCode: user.phone_area_code,
+                        phoneNumber: user.phone_number,
+                        selfParking: user.self_parking,
+                        valetParking: user.valet_parking,
+                        hasOutdoorPool: user.has_outdoor_pool,
+                        hasSpa: user.has_spa,
+                        isSmokeFree: user.is_smoke_free,
+                        isActive: user.property_is_active,
+                        suites: user.map((user) => {
+                           return {
+                              id: user.suite_id,
+                              title: user.suite_title,
+                              image: user.image,
+                              squareFt: user.square_ft,
+                              maxGuest: user.max_guest,
+                              totalKingBed: user.total_king_bed,
+                              totalQueenBed: user.total_queen_bed,
+                              totalFullBed: user.total_full_bed,
+                              hasWiFi: user.has_wifi,
+                              hasTv: user.has_tv,
+                              hasSafe: user.has_safe,
+                              isAccessible: user.is_accessible,
+                              isActive: user.suite_is_active,
+                           };
+                        }),
+                     };
+                  }),
+                  "user.property_id"
+               ),
             };
             const accessToken = jwt.sign(user, process.env.JWT_ACCESS_SECRET, {
                expiresIn: "480m",
