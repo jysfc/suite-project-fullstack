@@ -32,7 +32,7 @@ class SelectProperty extends React.Component {
             localStorage.setItem("authToken", authToken);
             const user = jwtDecode(authToken);
             this.props.dispatch({
-               type: actions.UPDATE_EDITABLE_PROPERTY,
+               type: actions.UPDATE_CURRENT_USER,
                payload: user,
             });
             axios.defaults.headers.common["x-auth-token"] = authToken;
@@ -90,7 +90,7 @@ class SelectProperty extends React.Component {
                      this.editProperty();
                   }}
                >
-                  <h5>{this.props.editableProperty.name}</h5>
+                  <h5>{this.props.currentUser.propertyName}</h5>
                </Link>
 
                <button
@@ -123,6 +123,7 @@ class SelectProperty extends React.Component {
 }
 function mapStateToProps(state) {
    return {
+      currentUser: state.currentUser,
       editableProperty: state.editableProperty,
    };
 }

@@ -5,7 +5,7 @@ const router = express.Router();
 const db = require("../../db");
 const insertUser = require("../../queries/insertUser");
 const selectUserById = require("../../queries/selectUserById");
-const selectUserByEmail = require("../../queries/selectUserByEmail");
+// const selectUserByEmail = require("../../queries/selectUserByEmail");
 const { toHash } = require("../../utils/helpers");
 const getSignUpEmailError = require("../../validation/getSignUpEmailError");
 const getSignUpPasswordError = require("../../validation/getSignUpPasswordError");
@@ -13,6 +13,7 @@ const getLoginEmailError = require("../../validation/getLoginEmailError");
 const getLoginPasswordError = require("../../validation/getLoginPasswordError");
 const jwt = require("jsonwebtoken");
 // const uniqBy = require("lodash/uniqBy");
+const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -68,13 +69,17 @@ router.post("/auth", async (req, res) => {
    let dbError = "";
    if (emailError === "" && passwordError === "") {
       // return the user to the client
-      db.query(selectUserByEmail, email)
+      db.query(selectUserPropertySuites, email)
          .then((users) => {
             const user = {
-               id: users[0].id,
+               id: users[0].user_id,
                email: users[0].email,
                createdAt: users[0].created_at,
-               isActive: users[0].is_active,
+               isActive: users[0].user_is_active,
+               propertyId: users[0].property_id,
+               propertyName: users[0].property_name,
+               website: users[0].website,
+               address1: users[0].address1,
             };
             // properties: uniqBy(
             //    user.map((user) => {
