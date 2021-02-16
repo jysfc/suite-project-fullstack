@@ -25,7 +25,7 @@ class SelectProperty extends React.Component {
 
    setProperties() {
       axios
-         .get(`/api/v1/users/auth`, id)
+         .get(`/api/v1/users/auth`)
          .then((res) => {
             // handle success
             const authToken = res.data;
