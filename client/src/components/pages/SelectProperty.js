@@ -31,15 +31,15 @@ class SelectProperty extends React.Component {
             const authToken = res.data;
             localStorage.setItem("authToken", authToken);
             const user = jwtDecode(authToken);
+            // this.setState({
+            //    properties: res.data,
+            //    displayedProperties: res.data,
+            // });
             this.props.dispatch({
                type: actions.UPDATE_CURRENT_USER,
                payload: user,
             });
             axios.defaults.headers.common["x-auth-token"] = authToken;
-            // this.setState({
-            //    properties: res.data,
-            //    displayedProperties: res.data,
-            // });
          })
          .catch((error) => {
             // handle error
