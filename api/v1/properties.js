@@ -21,7 +21,6 @@ router.get("/", (req, res) => {
                   email: userPropertySuite.email,
                   createdAt: userPropertySuite.created_at,
                   isActive: userPropertySuite.user_is_active,
-
                   properties: uniqBy(
                      userPropertySuites.map((userPropertySuite) => {
                         return {
