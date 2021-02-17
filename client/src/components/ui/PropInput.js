@@ -58,9 +58,7 @@ class PropInput extends React.Component {
    saveUpdatePropInput() {
       // mimic API response:
       axios
-         .get(
-            "https://raw.githubusercontent.com/jysfc/suite-project-mpa/main/src/data/current-user.json"
-         )
+         .get("/api/v1/properties")
          .then((res) => {
             // handle success
             this.props.dispatch({
