@@ -31,6 +31,7 @@ class LogIn extends React.Component {
       axios
          .post("/api/v1/users/auth", user)
          .then((res) => {
+            // console.log("response from database", res);
             // set token in localStorage
             const authToken = res.data;
             localStorage.setItem("authToken", authToken);
