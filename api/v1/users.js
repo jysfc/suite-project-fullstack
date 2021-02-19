@@ -73,7 +73,7 @@ router.post("/auth", async (req, res) => {
       db.query(selectUserPropertySuites, email)
          .then((userPropertySuites) => {
             // console.log("this is the userpropsuite", userPropertySuites);
-            const formattedUserPropertySuites = uniqBy(
+            const formattedUsers = uniqBy(
                userPropertySuites.map((userPropertySuite) => {
                   return {
                      id: userPropertySuite.user_id,
@@ -136,13 +136,10 @@ router.post("/auth", async (req, res) => {
                }),
                "id"
             );
-            console.log(JSON.stringify(formattedUserPropertySuites, null, 3));
-
-            const uniqUsers = uniqBy(formattedUserPropertySuites, "id");
-            const oneUser = uniqUsers[0];
-            console.log(oneUser);
+            console.log(JSON.stringify(formattedUsers, null, 3));
+            const formattedUser = formattedUsers[0];
             const accessToken = jwt.sign(
-               oneUser,
+               formattedUser,
                process.env.JWT_ACCESS_SECRET,
                {
                   expiresIn: "480m",
