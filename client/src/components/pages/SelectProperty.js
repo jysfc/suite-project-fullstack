@@ -11,10 +11,10 @@ import jwtDecode from "jwt-decode";
 class SelectProperty extends React.Component {
    constructor(props) {
       super(props);
-      console.log(this.props.userPropertySuites);
+      console.log(this.props.currentUser);
       this.state = {
-         properties: {},
-         displayedProperties: {},
+         properties: [],
+         displayedProperties: [],
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
@@ -78,32 +78,44 @@ class SelectProperty extends React.Component {
    }
 
    render() {
-      console.log(this.props.currentUser.properties.id);
+      console.log(this.props.currentUser.properties);
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
-            <div className="col my-6 mr-2 shadow p-3 bg-white rounded">
-               <Link
-                  to="edit-property"
-                  className="text-dark text-decoration-none"
-                  type="button"
-                  onClick={() => {
-                     this.editProperty();
-                  }}
-               >
-                  <h5>{this.props.currentUser.properties[0].name}</h5>
-               </Link>
 
-               <button
-                  className="text-danger text-decoration-none float-right btn btn-link"
-                  onClick={() => {
-                     this.deleteProperty();
-                  }}
-               >
-                  <img src={RemoveIcon} width="20px" id="hotel-add" alt="" />
-                  Remove
-               </button>
-            </div>
+            {this.props.currentUser.properties.map((property) => {
+               return (
+                  <div className="col my-6 mr-2 shadow p-3 bg-white rounded">
+                     <Link
+                        to="edit-property"
+                        className="text-dark text-decoration-none"
+                        type="button"
+                        onClick={() => {
+                           this.editProperty();
+                        }}
+                     >
+                        <h5>{property.name}</h5>
+
+                        {/* <h5>{this.props.currentUser.properties[0].name}</h5> */}
+                     </Link>
+
+                     <button
+                        className="text-danger text-decoration-none float-right btn btn-link"
+                        onClick={() => {
+                           this.deleteProperty();
+                        }}
+                     >
+                        <img
+                           src={RemoveIcon}
+                           width="20px"
+                           id="hotel-add"
+                           alt=""
+                        />
+                        Remove
+                     </button>
+                  </div>
+               );
+            })}
 
             {/* <!-- Property new --> */}
             <div className="col mb-4">
