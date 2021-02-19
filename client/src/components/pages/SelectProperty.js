@@ -78,6 +78,7 @@ class SelectProperty extends React.Component {
    }
 
    render() {
+      console.log(this.props.currentUser.properties.id);
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
