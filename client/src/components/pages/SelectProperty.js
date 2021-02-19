@@ -90,7 +90,7 @@ class SelectProperty extends React.Component {
                      this.editProperty();
                   }}
                >
-                  <h5>{this.props.currentUser.propertyName}</h5>
+                  <h5>{this.props.currentUser.properties[0].name}</h5>
                </Link>
 
                <button
