@@ -83,6 +83,7 @@ router.post("/auth", async (req, res) => {
                      properties: uniqBy(
                         userPropertySuites.map((userPropertySuite) => {
                            return {
+                              userId: userPropertySuite.user_id,
                               name: userPropertySuite.property_name,
                               id: userPropertySuite.property_id,
                               website: userPropertySuite.website,
@@ -106,6 +107,8 @@ router.post("/auth", async (req, res) => {
                               suites: uniqBy(
                                  userPropertySuites.map((userPropertySuite) => {
                                     return {
+                                       propertyId:
+                                          userPropertySuite.property_id,
                                        id: userPropertySuite.suite_id,
                                        title: userPropertySuite.suite_title,
                                        image: userPropertySuite.image,
