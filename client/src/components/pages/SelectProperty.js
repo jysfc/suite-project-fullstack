@@ -29,18 +29,22 @@ class SelectProperty extends React.Component {
          .then((res) => {
             // handle success
             const authToken = res.data;
+
             localStorage.setItem("authToken", authToken);
             const user = jwtDecode(authToken);
-            // this.setState({
-            //    properties: res.data,
-            //    displayedProperties: res.data,
-            // });
+            console.log(user);
             this.props.dispatch({
                type: actions.UPDATE_CURRENT_USER,
                payload: user,
             });
+            this.setState({
+               properties: user,
+               displayedProperties: user,
+            });
             axios.defaults.headers.common["x-auth-token"] = authToken;
+            console.log(authToken);
          })
+
          .catch((error) => {
             // handle error
             console.log(error);
@@ -48,37 +52,38 @@ class SelectProperty extends React.Component {
    }
 
    addProperty() {
-      this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_PROPERTY,
-         payload: this.props.property,
-      });
+      // this.props.dispatch({
+      //    type: actions.UPDATE_EDITABLE_PROPERTY,
+      //    payload: this.props.property,
+      // });
       this.props.history.push("/edit-property");
    }
 
    editProperty() {
-      this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_PROPERTY,
-         payload: this.props.property,
-      });
+      // this.props.dispatch({
+      //    type: actions.UPDATE_EDITABLE_PROPERTY,
+      //    payload: this.props.property,
+      // });
       this.props.history.push("/edit-property");
    }
 
    deleteProperty(property) {
       const deletedProperty = property;
       const properties = this.state.displayedProperties;
-      const filteredProperties = properties.filter((property) => {
+      const displayedProperties = properties.filter((property) => {
          return property.id !== deletedProperty.id;
       });
-      console.log(filteredProperties);
+      console.log(displayedProperties);
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
-         payload: filteredProperties,
+         payload: displayedProperties,
       });
-      this.setState({ displayedProperties: filteredProperties });
+      this.setState({ displayedProperties: displayedProperties });
    }
 
    render() {
-      console.log(this.props.currentUser.properties);
+      console.log(this.state.properties);
+
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
