@@ -10,6 +10,7 @@ class EditProperty extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
+         editableProperty: [],
          displayedSuites: [],
          image: "",
          title: "",
@@ -53,7 +54,7 @@ class EditProperty extends React.Component {
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
                         {/*<!--RESULT-->*/}
-                        {this.props.property.suites.map((suite) => {
+                        {this.props.editableProperty.suites.map((suite) => {
                            return (
                               <SuiteAvail
                                  suite={suite}
@@ -91,7 +92,7 @@ class EditProperty extends React.Component {
 }
 function mapStateToProps(state) {
    return {
-      property: state.editableProperty,
+      editableProperty: state.editableProperty,
       editableSuite: state.editableSuite,
    };
 }
