@@ -82,6 +82,8 @@ router.post("/auth", async (req, res) => {
                      isActive: userPropertySuite.user_is_active,
                      properties: uniqBy(
                         userPropertySuites.map((userPropertySuite) => {
+                           const currentPropertyId =
+                              userPropertySuite.property_id;
                            return {
                               userId: userPropertySuite.user_id,
                               name: userPropertySuite.property_name,
@@ -105,30 +107,38 @@ router.post("/auth", async (req, res) => {
                               isSmokeFree: userPropertySuite.is_smoke_free,
                               isActive: userPropertySuite.property_is_active,
                               suites: uniqBy(
-                                 userPropertySuites.map((userPropertySuite) => {
-                                    return {
-                                       propertyId:
-                                          userPropertySuite.property_id,
-                                       id: userPropertySuite.suite_id,
-                                       title: userPropertySuite.suite_title,
-                                       image: userPropertySuite.image,
-                                       squareFt: userPropertySuite.square_ft,
-                                       maxGuest: userPropertySuite.max_guest,
-                                       totalKingBed:
-                                          userPropertySuite.total_king_bed,
-                                       totalQueenBed:
-                                          userPropertySuite.total_queen_bed,
-                                       totalFullBed:
-                                          userPropertySuite.total_full_bed,
-                                       hasWiFi: userPropertySuite.has_wifi,
-                                       hasTv: userPropertySuite.has_tv,
-                                       hasSafe: userPropertySuite.has_safe,
-                                       isAccessible:
-                                          userPropertySuite.is_accessible,
-                                       isActive:
-                                          userPropertySuite.suite_is_active,
-                                    };
-                                 }),
+                                 userPropertySuites
+                                    .map((userPropertySuite) => {
+                                       return {
+                                          propertyId:
+                                             userPropertySuite.property_id,
+                                          id: userPropertySuite.suite_id,
+                                          title: userPropertySuite.suite_title,
+                                          image: userPropertySuite.image,
+                                          squareFt: userPropertySuite.square_ft,
+                                          maxGuest: userPropertySuite.max_guest,
+                                          totalKingBed:
+                                             userPropertySuite.total_king_bed,
+                                          totalQueenBed:
+                                             userPropertySuite.total_queen_bed,
+                                          totalFullBed:
+                                             userPropertySuite.total_full_bed,
+                                          hasWiFi: userPropertySuite.has_wifi,
+                                          hasTv: userPropertySuite.has_tv,
+                                          hasSafe: userPropertySuite.has_safe,
+                                          isAccessible:
+                                             userPropertySuite.is_accessible,
+                                          isActive:
+                                             userPropertySuite.suite_is_active,
+                                       };
+                                    })
+                                    .filter((suite) => {
+                                       if (
+                                          suite.propertyId === currentPropertyId
+                                       )
+                                          return true;
+                                       else return false;
+                                    }),
                                  "id"
                               ),
                            };
