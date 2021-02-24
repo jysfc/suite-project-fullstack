@@ -52,10 +52,26 @@ class SelectProperty extends React.Component {
    }
 
    addProperty() {
-      // this.props.dispatch({
-      //    type: actions.UPDATE_EDITABLE_PROPERTY,
-      //    payload: this.props.property,
-      // });
+      console.log("ADD UPDATE_EDITABLE_PROPERTY");
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: {
+            propertyId: this.props.currentUser.propertyId,
+            // id: userPropertySuite.suite_id,
+            // title: userPropertySuite.suite_title,
+            // image: userPropertySuite.image,
+            // squareFt: userPropertySuite.square_ft,
+            // maxGuest: userPropertySuite.max_guest,
+            // totalKingBed: userPropertySuite.total_king_bed,
+            // totalQueenBed: userPropertySuite.total_queen_bed,
+            // totalFullBed: userPropertySuite.total_full_bed,
+            // hasWiFi: userPropertySuite.has_wifi,
+            // hasTv: userPropertySuite.has_tv,
+            // hasSafe: userPropertySuite.has_safe,
+            // isAccessible: userPropertySuite.is_accessible,
+            // isActive: userPropertySuite.suite_is_active,
+         },
+      });
       this.props.history.push("/edit-property");
    }
 
