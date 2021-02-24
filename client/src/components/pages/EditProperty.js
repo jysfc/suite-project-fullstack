@@ -1,11 +1,11 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-// import SuiteAvail from "../ui/SuiteAvail";
+import SuiteAvail from "../ui/SuiteAvail";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
-import editableProperty from "../../store/reducers/editableProperty";
+// import editableProperty from "../../store/reducers/editableProperty";
 
 class EditProperty extends React.Component {
    constructor(props) {
@@ -58,18 +58,16 @@ class EditProperty extends React.Component {
                      <div className="col-sm-6">
                         {/*<!--RESULT-->*/}
 
-                        {/* {this.props.editableProperty.properties.suites.map(
-                           (suite) => {
-                              return (
-                                 <SuiteAvail
-                                    suite={suite}
-                                    key={suite.id}
-                                    deleteSuite={this.deleteSuite}
-                                    editSuite={this.editSuite}
-                                 />
-                              );
-                           }
-                        )} */}
+                        {this.props.editableProperty.suites.map((suite) => {
+                           return (
+                              <SuiteAvail
+                                 suite={suite}
+                                 key={suite.id}
+                                 deleteSuite={this.deleteSuite}
+                                 editSuite={this.editSuite}
+                              />
+                           );
+                        })}
                         {/* <!--NEW PROP--> */}
                         <div className="col">
                            <button
