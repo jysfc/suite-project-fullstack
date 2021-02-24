@@ -53,7 +53,7 @@ class SelectProperty extends React.Component {
 
    addProperty() {
       console.log("ADD UPDATE_EDITABLE_PROPERTY");
-      const newProperty = { ...this.props.currentUser };
+      const newProperty = { ...this.props.currentUser.properties };
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: newProperty,
@@ -61,11 +61,13 @@ class SelectProperty extends React.Component {
       this.props.history.push("/edit-property");
    }
 
-   editProperty() {
-      // this.props.dispatch({
-      //    type: actions.UPDATE_EDITABLE_PROPERTY,
-      //    payload: this.props.property,
-      // });
+   editProperty(property) {
+      console.log("EDIT UPDATE_EDITABLE_PROPERTY");
+
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: property,
+      });
       this.props.history.push("/edit-property");
    }
 
@@ -98,7 +100,7 @@ class SelectProperty extends React.Component {
                         className="text-dark text-decoration-none"
                         type="button"
                         onClick={() => {
-                           this.editProperty();
+                           this.editProperty(property);
                         }}
                      >
                         <h5>{property.name}</h5>

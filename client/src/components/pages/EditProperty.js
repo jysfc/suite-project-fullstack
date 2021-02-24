@@ -1,10 +1,11 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import SuiteAddIcon from "../../icons/suite-add.svg";
-import SuiteAvail from "../ui/SuiteAvail";
+// import SuiteAvail from "../ui/SuiteAvail";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
+import editableProperty from "../../store/reducers/editableProperty";
 
 class EditProperty extends React.Component {
    constructor(props) {
@@ -42,6 +43,8 @@ class EditProperty extends React.Component {
       this.props.history.push("/edit-suite");
    }
    render() {
+      const property = this.props.editableProperty;
+      console.log(this.props.editableProperty.suites);
       return (
          <AppTemplate>
             <div className="row mb-4">
@@ -49,22 +52,24 @@ class EditProperty extends React.Component {
                   <div className="row">
                      {/* <!--CoLUMN LEFT EDIT PROP--> */}
                      <div className="col-sm-6">
-                        <PropInput />
+                        <PropInput property={property} key={property.id} />
                      </div>
                      {/* <!--COLUMN RIGHT PROP RESULT--> */}
                      <div className="col-sm-6">
                         {/*<!--RESULT-->*/}
-                        {this.props.editableProperty.suites.map((suite) => {
-                           return (
-                              <SuiteAvail
-                                 suite={suite}
-                                 key={suite.id}
-                                 deleteSuite={this.deleteSuite}
-                                 editSuite={this.editSuite}
-                              />
-                           );
-                        })}
 
+                        {/* {this.props.editableProperty.properties.suites.map(
+                           (suite) => {
+                              return (
+                                 <SuiteAvail
+                                    suite={suite}
+                                    key={suite.id}
+                                    deleteSuite={this.deleteSuite}
+                                    editSuite={this.editSuite}
+                                 />
+                              );
+                           }
+                        )} */}
                         {/* <!--NEW PROP--> */}
                         <div className="col">
                            <button
