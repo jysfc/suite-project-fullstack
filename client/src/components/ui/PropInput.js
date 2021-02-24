@@ -60,6 +60,7 @@ class PropInput extends React.Component {
       axios
          .get("/api/v1/properties")
          .then((res) => {
+            console.log(res);
             // handle success
             this.props.dispatch({
                type: actions.UPDATE_EDITABLE_PROPERTY,
