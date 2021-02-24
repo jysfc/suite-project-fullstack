@@ -5,10 +5,7 @@ import combineReducers from "./combineReducers";
 const initialState = {
    currentUser: {},
    editableSuite: {},
-   editableProperty: {
-      property: {},
-      prevRoute: "",
-   },
+   editableProperty: {},
    selectedSuite: {},
    allSuites: {
       suites: [],
