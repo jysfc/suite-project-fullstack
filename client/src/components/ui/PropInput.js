@@ -58,7 +58,7 @@ class PropInput extends React.Component {
    saveUpdatePropInput() {
       // mimic API response:
       axios
-         .get("/api/v1/properties")
+         .put("/api/v1/users/:id")
          .then((res) => {
             console.log(res);
             // handle success
@@ -262,7 +262,7 @@ class PropInput extends React.Component {
             </div>
 
             <Link
-               to="/edit-suite"
+               to="/edit-property"
                className={classnames("btn btn-primary btn-block mb-4", {
                   disabled: this.checkHasInvalidCharCount(),
                })}
