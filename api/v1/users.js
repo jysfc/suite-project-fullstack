@@ -5,7 +5,6 @@ const router = express.Router();
 const db = require("../../db");
 const insertUser = require("../../queries/insertUser");
 const selectUserById = require("../../queries/selectUserById");
-// const selectUserByEmail = require("../../queries/selectUserByEmail");
 const { toHash } = require("../../utils/helpers");
 const getSignUpEmailError = require("../../validation/getSignUpEmailError");
 const getSignUpPasswordError = require("../../validation/getSignUpPasswordError");
@@ -14,6 +13,7 @@ const getLoginPasswordError = require("../../validation/getLoginPasswordError");
 const jwt = require("jsonwebtoken");
 const uniqBy = require("lodash/uniqBy");
 const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
+const updateProperty = require("../../queries/updateProperty");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -171,4 +171,104 @@ router.post("/auth", async (req, res) => {
    }
 });
 
+//@route        PUT api/v1/users/:id
+//@desc         Update property info
+//@access       Public
+router.put("/:id", (req, res) => {
+   // console.log(req.body);
+   const id = req.params.properties.id;
+   console.log(id);
+   const user = req.user;
+   const {
+      email,
+      createdAt,
+      userIsActive,
+
+      propertyId,
+      name,
+      website,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+      country,
+      phoneCountryCode,
+      phoneAreaCode,
+      phoneNumber,
+      selfParking,
+      valetParking,
+      hasOutdoorPool,
+      hasSpa,
+      isSmokeFree,
+      propertyIsActive,
+
+      suiteId,
+      title,
+      image,
+      squareFt,
+      maxGuest,
+      totalKingBed,
+      totalQueenBed,
+      totalFullBed,
+      hasWiFi,
+      hasTv,
+      hasSafe,
+      isAccessible,
+      suiteIsActive,
+   } = req.body;
+   const property = {
+      user_id: user.id,
+      email,
+      created_at: createdAt,
+      user_is_active: userIsActive,
+
+      property_id: propertyId,
+      property_name: name,
+      website,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+      country,
+      phone_country_code: phoneCountryCode,
+      phone_area_code: phoneAreaCode,
+      phone_number: phoneNumber,
+      self_parking: selfParking,
+      valet_parking: valetParking,
+      has_outdoor_pool: hasOutdoorPool,
+      has_spa: hasSpa,
+      is_smoke_free: isSmokeFree,
+      property_is_active: propertyIsActive,
+
+      suite_id: suiteId,
+      suite_title: title,
+      image,
+      square_ft: squareFt,
+      max_guest: maxGuest,
+      total_king_bed: totalKingBed,
+      total_queen_bed: totalQueenBed,
+      total_full_bed: totalFullBed,
+      has_wifi: hasWiFi,
+      has_tv: hasTv,
+      has_safe: hasSafe,
+      is_accessible: isAccessible,
+      suite_is_active: suiteIsActive,
+   };
+   console.log(property);
+   db.query(updateProperty, [property, id])
+      .then((dbRes) => {
+         //success
+         console.log("Updated property in the db:", dbRes);
+         //return with a status response
+         return res.status(200).json({ success: "property updated" });
+      })
+
+      .catch((err) => {
+         console.log(err);
+         dbError = `${err.code} ${err.sqlMessage}`;
+         return res.status(400).json({ dbError });
+      });
+});
 module.exports = router;
