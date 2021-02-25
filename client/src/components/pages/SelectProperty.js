@@ -53,17 +53,15 @@ class SelectProperty extends React.Component {
 
    addProperty() {
       console.log("ADD UPDATE_EDITABLE_PROPERTY");
-      const newProperty = { ...this.props.currentUser.properties };
-      this.props.dispatch({
-         type: actions.UPDATE_EDITABLE_PROPERTY,
-         payload: newProperty,
-      });
+      // this.props.dispatch({
+      //    type: actions.UPDATE_EDITABLE_PROPERTY,
+      //    payload: property,
+      // });
       this.props.history.push("/edit-property");
    }
 
    editProperty(property) {
       console.log("EDIT UPDATE_EDITABLE_PROPERTY");
-
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: property,
@@ -86,8 +84,7 @@ class SelectProperty extends React.Component {
    }
 
    render() {
-      console.log(this.state.properties);
-
+      // console.log(this.state.properties);
       return (
          <AppTemplate>
             {/* <!-- Properties --> */}
@@ -104,14 +101,12 @@ class SelectProperty extends React.Component {
                         }}
                      >
                         <h5>{property.name}</h5>
-
-                        {/* <h5>{this.props.currentUser.properties[0].name}</h5> */}
                      </Link>
 
                      <button
                         className="text-danger text-decoration-none float-right btn btn-link"
                         onClick={() => {
-                           this.deleteProperty();
+                           this.deleteProperty(property);
                         }}
                      >
                         <img

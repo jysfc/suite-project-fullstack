@@ -5,7 +5,6 @@ import SuiteAvail from "../ui/SuiteAvail";
 import PropInput from "../ui/PropInput";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
-// import editableProperty from "../../store/reducers/editableProperty";
 
 class EditProperty extends React.Component {
    constructor(props) {
@@ -44,7 +43,7 @@ class EditProperty extends React.Component {
    }
    render() {
       const property = this.props.editableProperty;
-      console.log(this.props.editableProperty.suites);
+      // console.log(this.props.editableProperty);
       return (
          <AppTemplate>
             <div className="row mb-4">
