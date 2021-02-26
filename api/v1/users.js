@@ -176,15 +176,14 @@ router.post("/auth", async (req, res) => {
 //@access       Public
 router.put("/:id", (req, res) => {
    // console.log(req.body);
-   const id = req.params.properties.id;
-   console.log(id);
+   const id = req.params.id;
+   console.log("this is the id: ", id);
    const user = req.user;
    const {
       email,
       createdAt,
       userIsActive,
 
-      propertyId,
       name,
       website,
       address1,
@@ -223,7 +222,7 @@ router.put("/:id", (req, res) => {
       created_at: createdAt,
       user_is_active: userIsActive,
 
-      property_id: propertyId,
+      id,
       property_name: name,
       website,
       address1,
