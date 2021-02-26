@@ -7,6 +7,7 @@ import axios from "axios";
 import actions from "../../store/actions";
 import RemoveIcon from "../../icons/remove.svg";
 import jwtDecode from "jwt-decode";
+import { v4 as getUuid } from "uuid";
 
 class SelectProperty extends React.Component {
    constructor(props) {
@@ -15,6 +16,7 @@ class SelectProperty extends React.Component {
       this.state = {
          properties: [],
          displayedProperties: [],
+         createPropertyInfo: this.props.currentUser || "",
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
@@ -53,10 +55,33 @@ class SelectProperty extends React.Component {
 
    addProperty() {
       console.log("ADD UPDATE_EDITABLE_PROPERTY");
-      // this.props.dispatch({
-      //    type: actions.UPDATE_EDITABLE_PROPERTY,
-      //    payload: property,
-      // });
+      console.log(this.props.currentUser);
+      // this.setState({ createPropertyInfo: e.target.value });
+      this.props.dispatch({
+         type: actions.UPDATE_EDITABLE_PROPERTY,
+         payload: {
+            userId: this.props.currentUser.id,
+            name: this.state.createPropertyInfo.name,
+            id: getUuid(),
+            website: this.state.createPropertyInfo.website,
+            // address1: this.state.createPropertyInfo.address1,
+            // address2: this.state.createPropertyInfo.address2,
+            // city: this.state.createPropertyInfo.city,
+            // state: this.state.createPropertyInfo.state,
+            // zip: this.state.createPropertyInfo.zip,
+            // country: this.state.createPropertyInfo.country,
+            // phoneCountryCode: this.state.createPropertyInfo.phoneCountryCode,
+            // phoneAreaCode: this.state.createPropertyInfo.phoneAreaCode,
+            // phoneNumber: this.state.createPropertyInfo.phoneNumber,
+            // selfParking: this.state.createPropertyInfo.selfParking,
+            // valetParking: this.state.createPropertyInfo.valetParking,
+            // hasOutdoorPool: this.state.createPropertyInfo.hasOutdoorPool,
+            // hasSpa: this.state.createPropertyInfo.hasSpa,
+            // isSmokeFree: this.state.createPropertyInfo.isSmokeFree,
+            isActive: this.state.createPropertyInfo.isActive,
+            suites: [],
+         },
+      });
       this.props.history.push("/edit-property");
    }
 
