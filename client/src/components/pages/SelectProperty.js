@@ -16,7 +16,7 @@ class SelectProperty extends React.Component {
       this.state = {
          properties: [],
          displayedProperties: [],
-         createPropertyInfo: this.props.currentUser || "",
+         property: this.props.currentUser || "",
       };
       this.deleteProperty = this.deleteProperty.bind(this);
    }
@@ -56,29 +56,29 @@ class SelectProperty extends React.Component {
    addProperty() {
       console.log("ADD UPDATE_EDITABLE_PROPERTY");
       console.log(this.props.currentUser);
-      // this.setState({ createPropertyInfo: e.target.value });
+      // this.setState({ property: e.target.value });
       this.props.dispatch({
          type: actions.UPDATE_EDITABLE_PROPERTY,
          payload: {
             userId: this.props.currentUser.id,
-            name: this.state.createPropertyInfo.name,
+            name: "",
             id: getUuid(),
-            website: this.state.createPropertyInfo.website,
-            // address1: this.state.createPropertyInfo.address1,
-            // address2: this.state.createPropertyInfo.address2,
-            // city: this.state.createPropertyInfo.city,
-            // state: this.state.createPropertyInfo.state,
-            // zip: this.state.createPropertyInfo.zip,
-            // country: this.state.createPropertyInfo.country,
-            // phoneCountryCode: this.state.createPropertyInfo.phoneCountryCode,
-            // phoneAreaCode: this.state.createPropertyInfo.phoneAreaCode,
-            // phoneNumber: this.state.createPropertyInfo.phoneNumber,
-            // selfParking: this.state.createPropertyInfo.selfParking,
-            // valetParking: this.state.createPropertyInfo.valetParking,
-            // hasOutdoorPool: this.state.createPropertyInfo.hasOutdoorPool,
-            // hasSpa: this.state.createPropertyInfo.hasSpa,
-            // isSmokeFree: this.state.createPropertyInfo.isSmokeFree,
-            isActive: this.state.createPropertyInfo.isActive,
+            // website: "",
+            // address1: "",
+            // address2: "",
+            // city: "",
+            // state: "",
+            // zip: "",
+            // country: "",
+            // phoneCountryCode: "",
+            // phoneAreaCode: "",
+            // phoneNumber: "",
+            // selfParking: "",
+            // valetParking: "",
+            // hasOutdoorPool: "",
+            // hasSpa: "",
+            // isSmokeFree: "",
+            isActive: 1,
             suites: [],
          },
       });
