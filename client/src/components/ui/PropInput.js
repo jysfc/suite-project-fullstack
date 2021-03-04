@@ -55,7 +55,7 @@ class PropInput extends React.Component {
       });
    }
 
-   saveUpdatePropInput() {
+   updatePropInputWithSave() {
       // mimic API response:
       axios
          .put("/api/v1/users/:id")
@@ -268,7 +268,7 @@ class PropInput extends React.Component {
                })}
                id="save"
                onClick={() => {
-                  this.saveUpdatePropInput();
+                  this.updatePropInputWithSave();
                }}
             >
                <img
