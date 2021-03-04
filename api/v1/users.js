@@ -180,9 +180,9 @@ router.put("/:id", (req, res) => {
    console.log("this is the id: ", id);
    const user = req.user;
    const {
-      email,
-      createdAt,
-      userIsActive,
+      // email,
+      // createdAt,
+      // userIsActive,
 
       name,
       website,
@@ -217,10 +217,10 @@ router.put("/:id", (req, res) => {
       suiteIsActive,
    } = req.body;
    const property = {
-      user_id: user.id,
-      email,
-      created_at: createdAt,
-      user_is_active: userIsActive,
+      user_id: user,
+      // email,
+      // created_at: createdAt,
+      // user_is_active: userIsActive,
 
       id,
       property_name: name,
