@@ -55,21 +55,20 @@ class PropInput extends React.Component {
       });
    }
 
-   updatePropInputWithSave() {
-      // mimic API response:
+   updatePropInputWithSave(property) {
+      const newProperty = { ...property };
+      // db PUT this card in axios req
       axios
-         .put("/api/v1/users/:id")
-         .then((res) => {
-            console.log(res);
-            // handle success
-            this.props.dispatch({
-               type: actions.UPDATE_EDITABLE_PROPERTY,
-               payload: res.data,
-            });
+         .put(`/api/v1/users/${newProperty.id}`, newProperty)
+         .then(() => {
+            console.log("property updated");
+            // TODO: on success, fire success overlay
+            this.checkHasInvalidCharCount();
          })
-         .catch((error) => {
-            // handle error
-            console.log(error);
+         .catch((err) => {
+            const { data } = err.response;
+            console.log(data);
+            // TODO: Display error overlay, hide after 5 seconds
          });
    }
 
@@ -268,7 +267,7 @@ class PropInput extends React.Component {
                })}
                id="save"
                onClick={() => {
-                  this.updatePropInputWithSave();
+                  this.updatePropInputWithSave(property);
                }}
             >
                <img
