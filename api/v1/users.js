@@ -201,7 +201,7 @@ router.put("/:id", validateJwt, (req, res) => {
       hasOutdoorPool,
       hasSpa,
       isSmokeFree,
-      // propertyIsActive,
+      // propertyIsActive,  // ASK MIKE
 
       // suiteId,
       // title,
