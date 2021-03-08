@@ -15,18 +15,19 @@ class PropInput extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         name: "",
-         website: "",
-         address1: "",
-         address2: "",
-         city: "",
-         state: "",
-         zip: "",
-         country: "",
-         phone: "",
-         hasOutdoorPool: false,
-         hasSpa: false,
-         isSmokeFree: false,
+         editableProperty: [],
+         // name: "",
+         // website: "",
+         // address1: "",
+         // address2: "",
+         // city: "",
+         // state: "",
+         // zip: "",
+         // country: "",
+         // phone: "",
+         // hasOutdoorPool: false,
+         // hasSpa: false,
+         // isSmokeFree: false,
       };
    }
 
@@ -73,6 +74,8 @@ class PropInput extends React.Component {
    }
 
    render() {
+      const property = this.props.property;
+      console.log(this.props.property);
       return (
          <>
             {/* <!--CoLUMN LEFT EDIT PROP--> */}

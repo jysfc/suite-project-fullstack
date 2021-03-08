@@ -78,7 +78,7 @@ class SelectProperty extends React.Component {
             hasOutdoorPool: "",
             hasSpa: "",
             isSmokeFree: "",
-            isActive: 1,
+            propertyIsActive: 1,
             suites: [],
          },
       });

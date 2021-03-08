@@ -14,6 +14,7 @@ const jwt = require("jsonwebtoken");
 const uniqBy = require("lodash/uniqBy");
 const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
 const updateProperty = require("../../queries/updateProperty");
+const validateJwt = require("../../utils/validateJwt");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -174,7 +175,7 @@ router.post("/auth", async (req, res) => {
 //@route        PUT api/v1/users/:id
 //@desc         Update property info
 //@access       Public
-router.put("/:id", (req, res) => {
+router.put("/:id", validateJwt, (req, res) => {
    // console.log(req.body);
    const id = req.params.id;
    console.log("this is the id: ", id);
@@ -200,30 +201,30 @@ router.put("/:id", (req, res) => {
       hasOutdoorPool,
       hasSpa,
       isSmokeFree,
-      propertyIsActive,
+      // propertyIsActive,
 
-      suiteId,
-      title,
-      image,
-      squareFt,
-      maxGuest,
-      totalKingBed,
-      totalQueenBed,
-      totalFullBed,
-      hasWiFi,
-      hasTv,
-      hasSafe,
-      isAccessible,
-      suiteIsActive,
+      // suiteId,
+      // title,
+      // image,
+      // squareFt,
+      // maxGuest,
+      // totalKingBed,
+      // totalQueenBed,
+      // totalFullBed,
+      // hasWiFi,
+      // hasTv,
+      // hasSafe,
+      // isAccessible,
+      // suiteIsActive,
    } = req.body;
    const property = {
-      user_id: user,
+      user_id: user.id,
       // email,
       // created_at: createdAt,
       // user_is_active: userIsActive,
 
       id,
-      property_name: name,
+      name,
       website,
       address1,
       address2,
@@ -239,21 +240,21 @@ router.put("/:id", (req, res) => {
       has_outdoor_pool: hasOutdoorPool,
       has_spa: hasSpa,
       is_smoke_free: isSmokeFree,
-      property_is_active: propertyIsActive,
+      // property_is_active: propertyIsActive,
 
-      suite_id: suiteId,
-      suite_title: title,
-      image,
-      square_ft: squareFt,
-      max_guest: maxGuest,
-      total_king_bed: totalKingBed,
-      total_queen_bed: totalQueenBed,
-      total_full_bed: totalFullBed,
-      has_wifi: hasWiFi,
-      has_tv: hasTv,
-      has_safe: hasSafe,
-      is_accessible: isAccessible,
-      suite_is_active: suiteIsActive,
+      // suite_id: suiteId,
+      // suite_title: title,
+      // image,
+      // square_ft: squareFt,
+      // max_guest: maxGuest,
+      // total_king_bed: totalKingBed,
+      // total_queen_bed: totalQueenBed,
+      // total_full_bed: totalFullBed,
+      // has_wifi: hasWiFi,
+      // has_tv: hasTv,
+      // has_safe: hasSafe,
+      // is_accessible: isAccessible,
+      // suite_is_active: suiteIsActive,
    };
    console.log(property);
    db.query(updateProperty, [property, id])
