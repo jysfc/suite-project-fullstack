@@ -11,6 +11,7 @@ class EditProperty extends React.Component {
       super(props);
       this.state = {
          editableProperty: [],
+         editableSuite: [],
          displayedSuites: [],
          image: "",
          title: "",
@@ -32,8 +33,8 @@ class EditProperty extends React.Component {
       this.setState({ displayedSuites: filteredSuites });
    }
    editSuite(id) {
-      console.log(this.props.property);
-      const suite = this.props.property.suites.find((suite) => {
+      console.log(this.props.editableProperty);
+      const suite = this.props.editableProperty.find((suite) => {
          return suite.id === id;
       });
       this.props.dispatch({
@@ -68,7 +69,7 @@ class EditProperty extends React.Component {
                               />
                            );
                         })}
-                        {/* <!--NEW PROP--> */}
+                        {/* <!--NEW SUITE--> */}
                         <div className="col">
                            <button
                               className="text-decoration-none btn btn-link"
