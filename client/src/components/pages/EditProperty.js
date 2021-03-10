@@ -33,8 +33,8 @@ class EditProperty extends React.Component {
       this.setState({ displayedSuites: filteredSuites });
    }
    editSuite(id) {
-      console.log(this.props.editableProperty);
-      const suite = this.props.editableProperty.find((suite) => {
+      console.log(this.props.editableSuite);
+      const suite = this.props.editableSuite.find((suite) => {
          return suite.id === id;
       });
       this.props.dispatch({
