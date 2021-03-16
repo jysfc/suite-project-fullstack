@@ -33,8 +33,8 @@ class EditProperty extends React.Component {
       this.setState({ displayedSuites: filteredSuites });
    }
    editSuite(id) {
-      console.log(this.props.editableSuite);
-      const suite = this.props.editableSuite.find((suite) => {
+      console.log(this.props.editableProperty.suites);
+      const suite = this.props.editableProperty.suites.find((suite) => {
          return suite.id === id;
       });
       this.props.dispatch({
@@ -73,8 +73,8 @@ class EditProperty extends React.Component {
                         <div className="col">
                            <button
                               className="text-decoration-none btn btn-link"
-                              onClick={() => {
-                                 this.editSuite();
+                              onClick={(id) => {
+                                 this.editSuite(id);
                               }}
                            >
                               <img
