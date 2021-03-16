@@ -9,15 +9,19 @@ class EditSuite extends React.Component {
    //    super(props);
    //    this.state = {
    //       displayedSuites: [],
+   //       editableSuite: [],
    //    };
    // }
    render() {
+      console.log(this.props.editableSuite);
+      // const suite = editableSuite;
       return (
          <AppTemplate>
             <div className="row mb-4">
                <div className="container">
                   <div className="row">
                      {/* <!--COLUMN LEFT PROP INFO--> */}
+
                      <PropInfo
                         suite={this.props.editableSuite}
                         key={this.props.editableSuite.propertyId}
