@@ -180,6 +180,9 @@ router.put("/:id", validateJwt, (req, res) => {
    const id = req.params.id;
    console.log("this is the id: ", id);
    const user = req.user;
+   // check db for id
+   // if id exist, perform update query
+   // else perform insert query
    const {
       // email,
       // createdAt,
