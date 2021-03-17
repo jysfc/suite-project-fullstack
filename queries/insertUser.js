@@ -1,4 +1,7 @@
 const insertUser = `
-    INSERT INTO users SET ?;
+    INSERT INTO 
+        users 
+    SET 
+        ?;
 `;
 module.exports = insertUser;

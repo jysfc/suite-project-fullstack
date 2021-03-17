@@ -183,6 +183,7 @@ router.put("/:id", validateJwt, (req, res) => {
    // check db for id
    // if id exist, perform update query
    // else perform insert query
+
    const {
       // email,
       // createdAt,
