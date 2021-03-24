@@ -3,13 +3,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../db");
 const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
-// const validateJwt = require("../../utils/validateJwt");
 const uniqBy = require("lodash/uniqBy");
+const validateJwt = require("../../utils/validateJwt");
 
 //@route        GET api/v1/properties
 //@desc         Get all properties by user id
 //@access       Private
-router.get("/", (req, res) => {
+router.get("/", validateJwt, (req, res) => {
    const user = req.query;
    db.query(selectUserPropertySuites, user)
       .then((userPropertySuites) => {

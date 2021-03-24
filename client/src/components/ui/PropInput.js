@@ -61,6 +61,7 @@ class PropInput extends React.Component {
       // db PUT this card in axios req
       axios
          .put(`/api/v1/users/${newProperty.id}`, newProperty)
+         // .put(`/api/v1/properties/${newProperty.id}`, newProperty)
          .then(() => {
             console.log("property updated");
             // TODO: on success, fire success overlay

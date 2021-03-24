@@ -173,7 +173,7 @@ router.post("/auth", async (req, res) => {
 });
 
 //@route        PUT api/v1/users/:id
-//@desc         Update property info
+//@desc         Check property id against db, update or insert property info
 //@access       Public
 router.put("/:id", validateJwt, (req, res) => {
    // console.log(req.body);
