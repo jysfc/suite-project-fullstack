@@ -116,7 +116,11 @@ class SelectProperty extends React.Component {
 
             {this.props.currentUser.properties.map((property) => {
                return (
-                  <div className="col my-6 mr-2 shadow p-3 bg-white rounded">
+                  <div
+                     // property={property}
+                     // key={property.id}
+                     className="col my-6 mr-2 shadow p-3 bg-white rounded"
+                  >
                      <Link
                         to="edit-property"
                         className="text-dark text-decoration-none"
