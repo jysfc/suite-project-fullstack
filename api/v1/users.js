@@ -16,6 +16,7 @@ const selectUserPropertySuites = require("../../queries/selectUserPropertySuites
 const updateProperty = require("../../queries/updateProperty");
 const validateJwt = require("../../utils/validateJwt");
 const getInsertNewPropertyError = require("../../validation/getInsertNewPropertyError");
+const insertProperty = require("../../queries/insertProperty");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -256,6 +257,18 @@ router.put("/:id", validateJwt, (req, res) => {
    let dbError = "";
    if (insertNewPropertyError === "") {
       // else perform insert query
+      db.query(insertProperty, [property, id])
+         .then((dbRes) => {
+            //success
+            console.log("Upserted property in the db:", dbRes);
+            //return with a status response
+            return res.status(200).json({ success: "property upserted" });
+         })
+         .catch((err) => {
+            console.log(err);
+            dbError = `${err.code} ${err.sqlMessage}`;
+            return res.status(400).json({ dbError });
+         });
    } else {
       // if id exist, perform update query
       db.query(updateProperty, [property, id])
@@ -265,7 +278,6 @@ router.put("/:id", validateJwt, (req, res) => {
             //return with a status response
             return res.status(200).json({ success: "property updated" });
          })
-
          .catch((err) => {
             console.log(err);
             dbError = `${err.code} ${err.sqlMessage}`;
