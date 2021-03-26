@@ -15,6 +15,7 @@ const uniqBy = require("lodash/uniqBy");
 const selectUserPropertySuites = require("../../queries/selectUserPropertySuites");
 const updateProperty = require("../../queries/updateProperty");
 const validateJwt = require("../../utils/validateJwt");
+const getInsertNewPropertyError = require("../../validation/getInsertNewPropertyError");
 
 //@route        POST api/v1/users
 //@desc         Create a new user
@@ -180,15 +181,8 @@ router.put("/:id", validateJwt, (req, res) => {
    const id = req.params.id;
    console.log("this is the id: ", id);
    const user = req.user;
-   // check db for id
-   // if id exist, perform update query
-   // else perform insert query
-
+   console.log("this is the user: ", user);
    const {
-      // email,
-      // createdAt,
-      // userIsActive,
-
       name,
       website,
       address1,
@@ -223,10 +217,6 @@ router.put("/:id", validateJwt, (req, res) => {
    } = req.body;
    const property = {
       user_id: user.id,
-      // email,
-      // created_at: createdAt,
-      // user_is_active: userIsActive,
-
       id,
       name,
       website,
@@ -261,18 +251,26 @@ router.put("/:id", validateJwt, (req, res) => {
       // suite_is_active: suiteIsActive,
    };
    console.log(property);
-   db.query(updateProperty, [property, id])
-      .then((dbRes) => {
-         //success
-         console.log("Updated property in the db:", dbRes);
-         //return with a status response
-         return res.status(200).json({ success: "property updated" });
-      })
+   // check db for id
+   const insertNewPropertyError = getInsertNewPropertyError(id);
+   let dbError = "";
+   if (insertNewPropertyError === "") {
+      // else perform insert query
+   } else {
+      // if id exist, perform update query
+      db.query(updateProperty, [property, id])
+         .then((dbRes) => {
+            //success
+            console.log("Updated property in the db:", dbRes);
+            //return with a status response
+            return res.status(200).json({ success: "property updated" });
+         })
 
-      .catch((err) => {
-         console.log(err);
-         dbError = `${err.code} ${err.sqlMessage}`;
-         return res.status(400).json({ dbError });
-      });
+         .catch((err) => {
+            console.log(err);
+            dbError = `${err.code} ${err.sqlMessage}`;
+            return res.status(400).json({ dbError });
+         });
+   }
 });
 module.exports = router;
